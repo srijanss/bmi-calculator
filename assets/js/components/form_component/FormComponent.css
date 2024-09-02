@@ -86,6 +86,8 @@
           top: calc(50% - 18px); /* 18px */
           right: 1.25rem; /* 20px */
           font-size: 1.5rem;
+          line-height: 1.5;
+          letter-spacing: 0.7px;
           font-variation-settings: "wght" var(--fw-semi-bold);
           color: var(--color-blue);
         }
@@ -123,8 +125,8 @@
 
     & fieldset#imperial-unit-height,
     & fieldset#imperial-unit-weight {
-      /* display: flex;
-      gap: 1rem; */
+      display: flex;
+      gap: 1rem;
     }
   }
 }
