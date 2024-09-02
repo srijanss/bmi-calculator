@@ -1,0 +1,37 @@
+@import "./_css-reset.css";
+@import "./_mixins.css";
+@import "./_fonts.css";
+
+:root {
+  --color-white: hsl(0, 0%, 100%);
+  --color-blue: hsl(227, 92%, 58%);
+  --color-gunmetal: hsl(215, 31%, 21%);
+  --color-dark-electric-blue: hsl(215, 17%, 45%);
+  --color-error: hsl(0, 100%, 74%);
+  --default-font-family: Inter, sans-serif;
+  --default-font-size: 16px;
+  --fw-regular: 400;
+  --fw-semi-bold: 600;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: var(--default-font-family);
+  font-variation-settings: "wght" var(--fw-regular);
+  font-size: var(--default-font-size);
+  color: var(--color-gunmetal);
+  background-color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img {
+  max-inline-size: 100%;
+  object-fit: cover;
+}
