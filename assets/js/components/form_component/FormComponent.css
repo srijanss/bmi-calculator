@@ -1,0 +1,11 @@
+@import "../../../css/_css-reset.css";
+@import "../../../css/_mixins.css";
+
+:host *,
+:host *:before,
+:host *:after {
+  box-sizing: border-box;
+}
+
+:host {
+}

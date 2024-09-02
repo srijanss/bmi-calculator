@@ -35,3 +35,34 @@ img {
   max-inline-size: 100%;
   object-fit: cover;
 }
+
+#curved-background {
+  width: 100%;
+  height: 640px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(
+      to right bottom,
+      transparent 0%,
+      #d6e6fe 100%
+    ),
+    linear-gradient(to left top, #d6fcfe 0%, transparent 100%);
+  border-radius: 0 0 35px 35px;
+  background-color: var(--color-white);
+  z-index: -1;
+}
+
+header {
+  --logo-size: 40px;
+  width: 100%;
+
+  & img {
+    width: var(--logo-size);
+    heigth: var(--logo-size);
+  }
+}
+
+main {
+  width: 100%;
+}

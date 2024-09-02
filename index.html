@@ -16,6 +16,10 @@
     <script type="module" src="./assets/js/app.js" defer></script>
   </head>
   <body>
+    <div id="curved-background"></div>
+    <header>
+      <img src="./assets/images/logo.svg" alt="BMI Calculator App Logo" />
+    </header>
     <main>
       <article>
         <h1>Body Mass Index Calculator</h1>
@@ -25,94 +29,17 @@
           of a healthy weight, it offers a valuable starting point to evaluate
           your overall health and well-being.
         </p>
-
-        <h2 id="form-heading">Enter your details below</h2>
-        <form
-          id="bmi-calculator-form"
-          action=""
-          aria-labelledby="form-heading"
-          novalidate
-        >
-          <fieldset>
-            <legend>Choose your unit of measurement</legend>
-            <ul>
-              <li>
-                <input
-                  type="radio"
-                  id="metric"
-                  name="unit"
-                  value="metric"
-                  checked
-                />
-                <label for="metric">Metric</label>
-              </li>
-              <li>
-                <input
-                  type="radio"
-                  id="imperial"
-                  name="unit"
-                  value="imperial"
-                />
-                <label for="imperial">Imperial</label>
-              </li>
-            </ul>
-          </fieldset>
-          <fieldset>
-            <legend>Metric measurements</legend>
-            <label for="height">Height</label>
-            <input type="number" id="height" name="height" placeholder="0" />
-            <label for="weight">Weight</label>
-            <input type="number" id="weight" name="weight" placeholder="0" />
-          </fieldset>
-          <fieldset>
-            <legend>Imperial measurements</legend>
-            <fieldset>
-              <legend>Height</legend>
-              <label for="feet">Feet</label>
-              <input type="number" id="feet" name="feet" placeholder="0" />
-              <label for="inches">Inches</label>
-              <input type="number" id="inches" name="inches" placeholder="0" />
-            </fieldset>
-            <fieldset>
-              <legend>Weight</legend>
-              <label for="stones">Stones</label>
-              <input type="number" id="stones" name="stones" placeholder="0" />
-              <label for="pounds">Pounds</label>
-              <input type="number" id="pounds" name="pounds" placeholder="0" />
-            </fieldset>
-          </fieldset>
-        </form>
-
-        <section aria-label="BMI Calculator Info">
-          <section
-            aria-labelledby="form-footer-title"
-            aria-describedby="form-footer-description"
-          >
-            <h3 id="form-footer-title">Welcome!</h3>
-            <p id="form-footer-description">
-              Enter your height and weight and you’ll see your BMI result here
-            </p>
-          </section>
-          <section
-            aria-label="BMI Calculator result"
-            aria-describedby="bmi-result-description"
-          >
-            <p id="bmi-result-desciption">
-              Your BMI is...
-
-              <!-- add score -->
-
-              Your BMI suggests you're
-              <!-- add classification -->. Your ideal weight is between
-              <!-- add range -->.
-            </p>
-          </section>
-        </section>
+        <bmi-form></bmi-form>
+        <bmi-result></bmi-result>
       </article>
 
-      <article aria-labelledby="bmi-result-means">
+      <article aria-labelledby="bmi-result-meaning">
         <div>
-          <h2 id="bmi-result-means">What your BMI result means</h2>
+          <img
+            src="./assets/images/image-man-eating.webp"
+            alt="A man eating a healthy meal."
+          />
+          <h2 id="bmi-result-meaning">What your BMI result means</h2>
           <p>
             A BMI range of 18.5 to 24.9 is considered a 'healthy weight.'
             Maintaining a healthy weight may lower your chances of experiencing
@@ -123,8 +50,12 @@
             week.
           </p>
         </div>
-        <section aria-label="Healthy lifestyle habits">
+        <section aria-label="Healthy Lifestyle Habits">
           <section aria-labelledby="healthy-eating">
+            <img
+              src="./assets/images/icon-eating.svg"
+              alt="Healthy Eating icon"
+            />
             <h3 id="healthy-eating">Healthy eating</h3>
             <p>
               Healthy eating promotes weight control, disease prevention, better
@@ -133,6 +64,7 @@
           </section>
 
           <section aria-labelledby="regular-exercise">
+            <img src="./assets/images/icon-exercise.svg" alt="Exercise icon" />
             <h3 id="regular-exercise">Regular exercise</h3>
             <p>
               Exercise improves fitness, aids weight control, elevates mood, and
@@ -140,6 +72,7 @@
             </p>
           </section>
           <section aria-labelledby="adequate-sleep">
+            <img src="./assets/images/icon-sleep.svg" alt="Sleep icon" />
             <h3 id="adequate-sleep">Adequate sleep</h3>
             <p>
               Sleep enhances mental clarity, emotional stability, and physical
@@ -162,6 +95,7 @@
 
         <section aria-label="Limitations of BMI">
           <section aria-labelledby="gender">
+            <img src="./assets/images/icon-gender.svg" alt="Gender icon" />
             <h3 id="gender">Gender</h3>
             <p>
               The development and body fat composition of girls and boys vary
@@ -171,6 +105,7 @@
           </section>
 
           <section aria-labelledby="age">
+            <img src="./assets/images/icon-age.svg" alt="Age icon" />
             <h3 id="age">Age</h3>
             <p>
               In aging individuals, increased body fat and muscle loss may cause
@@ -179,13 +114,19 @@
           </section>
 
           <section aria-labelledby="muscle">
+            <img src="./assets/images/icon-muscle.svg" alt="Muscle icon" />
             <h3 id="muscle">Muscle</h3>
             <p>
               BMI may misclassify muscular individuals as overweight or obese,
               as it doesn't differentiate muscle from fat.
             </p>
           </section>
+
           <section aria-labelledby="pregnancy">
+            <img
+              src="./assets/images/icon-pregnancy.svg"
+              alt="Pregnancy icon"
+            />
             <h3 id="pregnancy">Pregnancy</h3>
             <p>
               Expectant mothers experience weight gain due to their growing
@@ -195,6 +136,7 @@
           </section>
 
           <section aria-labelledby="race">
+            <img src="./assets/images/icon-race.svg" alt="Race icon" />
             <h3 id="race">Race</h3>
             <p>
               Certain health concerns may affect individuals of some Black and
