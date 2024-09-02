@@ -56,13 +56,34 @@ img {
 header {
   --logo-size: 40px;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0 0;
 
   & img {
     width: var(--logo-size);
-    heigth: var(--logo-size);
+    height: var(--logo-size);
   }
 }
 
 main {
   width: 100%;
+  padding: 2rem 2rem 0;
+
+  & h1 {
+    font-size: 3rem; /* 48px */
+    font-variation-settings: "wght" var(--fw-semi-bold);
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  & p {
+    font-size: 1rem;
+    font-variation-settings: "wght" var(--fw-regular);
+    line-height: 1.5;
+    color: var(--color-dark-electric-blue);
+    letter-spacing: -0.5px;
+    text-align: center;
+    margin-top: 1.5rem;
+  }
 }
