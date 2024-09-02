@@ -8,4 +8,123 @@
 }
 
 :host {
+  @mixin visually-hidden;
+
+  & h2 {
+    font-size: 1.5rem; /* 24px */
+    font-variation-settings: "wght" var(--fw-semi-bold);
+    line-height: 1;
+    letter-spacing: -0.7px;
+  }
+
+  & #bmi-calculator-form {
+    --radio-size: 31px;
+    & fieldset#unit-of-measure-group {
+      & ul {
+        list-style: none;
+        display: flex;
+
+        & li {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          gap: 1.125rem; /* 18px */
+          font-size: 1rem;
+          font-variation-settings: "wght" var(--fw-semi-bold);
+          line-height: 1.5;
+        }
+
+        & input[type="radio"] {
+          appearance: none;
+          -webki-appearance: none;
+          -moz-appearance: none;
+          margin: 0;
+          width: var(--radio-size);
+          height: var(--radio-size);
+          border: 1px solid var(--color-dark-electric-blue);
+          border-radius: 50%;
+
+          &:hover {
+            border-color: var(--color-blue);
+          }
+          &:checked {
+            background-color: var(--color-blue-15);
+            border: none;
+            position: relative;
+            &:after {
+              width: 15px;
+              height: 15px;
+              content: "";
+              position: absolute;
+              top: calc(50% - 7.5px);
+              left: calc(50% - 7.5px);
+              background-color: var(--color-blue);
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+    }
+
+    & fieldset#metric-unit,
+    & fieldset#imperial-unit {
+      & label,
+      & legend {
+        font-size: 0.875rem; /* 14px */
+        font-variation-settings: "wght" var(--fw-regular);
+        line-height: 1.5;
+        color: var(--color-dark-electric-blue);
+      }
+
+      & .unit-input-wrapper {
+        position: relative;
+        margin-top: 0.5rem;
+        &::after {
+          height: 36px;
+          content: attr(data-unit);
+          position: absolute;
+          top: calc(50% - 18px); /* 18px */
+          right: 1.25rem; /* 20px */
+          font-size: 1.5rem;
+          font-variation-settings: "wght" var(--fw-semi-bold);
+          color: var(--color-blue);
+        }
+      }
+
+      & input[type="number"] {
+        width: 100%;
+        border: 1px solid #d8e2e7;
+        padding: 1.25rem; /* 20px */
+        padding-right: 5.25rem; /* 84px */
+        border-radius: 12px;
+        font-family: var(--default-font-family);
+        font-size: 1.5rem;
+        font-variation-settings: "wght" var(--fw-semi-bold);
+        letter-spacing: -0.7px;
+        color: var(--color-gunmetal);
+
+        &::placeholder {
+          opacity: 0.25;
+        }
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        &:focus {
+          border: none;
+          outline: none;
+          outline: 1px solid var(--color-blue);
+        }
+      }
+    }
+
+    & fieldset#imperial-unit-height,
+    & fieldset#imperial-unit-weight {
+      /* display: flex;
+      gap: 1rem; */
+    }
+  }
 }
