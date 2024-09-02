@@ -13,7 +13,6 @@
     "autoprefixer": "^10.4.19",
     "cssnano": "^7.0.1",
     "postcss": "^8.4.38",
-    "postcss-css-reset": "^1.0.2",
     "postcss-import": "^16.1.0",
     "postcss-mixins": "^10.0.1",
     "postcss-nested": "^6.0.1",
