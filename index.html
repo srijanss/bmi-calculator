@@ -1,87 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Body Mass Index Calculator</title>
-  <link rel="stylesheet" href="./assets/css/styles.css">
-  <script type="module" src="./assets/js/app.js" defer></script>
-</head>
-<body>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
 
-  Body Mass Index Calculator
+    <title>Frontend Mentor | Body Mass Index Calculator</title>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <script type="module" src="./assets/js/app.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <article>
+        <h1>Body Mass Index Calculator</h1>
+        <p>
+          Better understand your weight in relation to your height using our
+          body mass index (BM) calculator. While BMI is not the sole determinant
+          of a healthy weight, it offers a valuable starting point to evaluate
+          your overall health and well-being.
+        </p>
 
-  Better understand your weight in relation to your height using our 
-  body mass index (BM) calculator. While BMI is not the sole determinant 
-  of a healthy weight, it offers a valuable starting point to evaluate 
-  your overall health and well-being.
+        <h2 id="form-heading">Enter your details below</h2>
+        <form
+          id="bmi-calculator-form"
+          action=""
+          aria-labelledby="form-heading"
+          novalidate
+        >
+          <fieldset>
+            <legend>Choose your unit of measurement</legend>
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  id="metric"
+                  name="unit"
+                  value="metric"
+                  checked
+                />
+                <label for="metric">Metric</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  id="imperial"
+                  name="unit"
+                  value="imperial"
+                />
+                <label for="imperial">Imperial</label>
+              </li>
+            </ul>
+          </fieldset>
+          <fieldset>
+            <legend>Metric measurements</legend>
+            <label for="height">Height</label>
+            <input type="number" id="height" name="height" placeholder="0" />
+            <label for="weight">Weight</label>
+            <input type="number" id="weight" name="weight" placeholder="0" />
+          </fieldset>
+          <fieldset>
+            <legend>Imperial measurements</legend>
+            <fieldset>
+              <legend>Height</legend>
+              <label for="feet">Feet</label>
+              <input type="number" id="feet" name="feet" placeholder="0" />
+              <label for="inches">Inches</label>
+              <input type="number" id="inches" name="inches" placeholder="0" />
+            </fieldset>
+            <fieldset>
+              <legend>Weight</legend>
+              <label for="stones">Stones</label>
+              <input type="number" id="stones" name="stones" placeholder="0" />
+              <label for="pounds">Pounds</label>
+              <input type="number" id="pounds" name="pounds" placeholder="0" />
+            </fieldset>
+          </fieldset>
+        </form>
 
-  Enter your details below
+        <section aria-label="BMI Calculator Info">
+          <section
+            aria-labelledby="form-footer-title"
+            aria-describedby="form-footer-description"
+          >
+            <h3 id="form-footer-title">Welcome!</h3>
+            <p id="form-footer-description">
+              Enter your height and weight and you’ll see your BMI result here
+            </p>
+          </section>
+          <section
+            aria-label="BMI Calculator result"
+            aria-describedby="bmi-result-description"
+          >
+            <p id="bmi-result-desciption">
+              Your BMI is...
 
-  Metric
-  Imperial
+              <!-- add score -->
 
-  Height
-  Weight
+              Your BMI suggests you're
+              <!-- add classification -->. Your ideal weight is between
+              <!-- add range -->.
+            </p>
+          </section>
+        </section>
+      </article>
 
-  Your BMI is...
+      <article aria-labelledby="bmi-result-means">
+        <div>
+          <h2 id="bmi-result-means">What your BMI result means</h2>
+          <p>
+            A BMI range of 18.5 to 24.9 is considered a 'healthy weight.'
+            Maintaining a healthy weight may lower your chances of experiencing
+            health issues later on, such as obesity and type 2 diabetes. Aim for
+            a nutritious diet with reduced fat and sugar content, incorporating
+            ample fruits and vegetables. Additionally, strive for regular
+            physical activity, ideally about 30 minutes daily for five days a
+            week.
+          </p>
+        </div>
+        <section aria-label="Healthy lifestyle habits">
+          <section aria-labelledby="healthy-eating">
+            <h3 id="healthy-eating">Healthy eating</h3>
+            <p>
+              Healthy eating promotes weight control, disease prevention, better
+              digestion, immunity, mental clarity, and mood.
+            </p>
+          </section>
 
-  <!-- add score -->
+          <section aria-labelledby="regular-exercise">
+            <h3 id="regular-exercise">Regular exercise</h3>
+            <p>
+              Exercise improves fitness, aids weight control, elevates mood, and
+              reduces disease risk, fostering wellness and longevity.
+            </p>
+          </section>
+          <section aria-labelledby="adequate-sleep">
+            <h3 id="adequate-sleep">Adequate sleep</h3>
+            <p>
+              Sleep enhances mental clarity, emotional stability, and physical
+              wellness, promoting overall restoration and rejuvenation.
+            </p>
+          </section>
+        </section>
+      </article>
 
-  Your BMI suggests you're <!-- add classification -->. 
-  Your ideal weight is between <!-- add range -->.
+      <article aria-labelledby="Limitations-of-bmi">
+        <div>
+          <h2 id="Limitations-of-bmi">Limitations of BMI</h2>
+          <p>
+            Although BMI is often a practical indicator of healthy weight, it is
+            not suited for every person. Specific groups should carefully
+            consider their BMI outcomes, and in certain cases, the measurement
+            may not be beneficial to use.
+          </p>
+        </div>
 
-  What your BMI result means
+        <section aria-label="Limitations of BMI">
+          <section aria-labelledby="gender">
+            <h3 id="gender">Gender</h3>
+            <p>
+              The development and body fat composition of girls and boys vary
+              with age. Consequently, a child's age and gender are considered
+              when evaluating their BMI.
+            </p>
+          </section>
 
-  A BMI range of 18.5 to 24.9 is considered a 'healthy weight.' Maintaining a 
-  healthy weight may lower your chances of experiencing health issues later on, 
-  such as obesity and type 2 diabetes. Aim for a nutritious diet with reduced 
-  fat and sugar content, incorporating ample fruits and vegetables. Additionally, 
-  strive for regular physical activity, ideally about 30 minutes daily for 
-  five days a week.
+          <section aria-labelledby="age">
+            <h3 id="age">Age</h3>
+            <p>
+              In aging individuals, increased body fat and muscle loss may cause
+              BMI to underestimate body fat content.
+            </p>
+          </section>
 
-  Healthy eating
-  Healthy eating promotes weight control, disease prevention, better digestion, 
-  immunity, mental clarity, and mood.
+          <section aria-labelledby="muscle">
+            <h3 id="muscle">Muscle</h3>
+            <p>
+              BMI may misclassify muscular individuals as overweight or obese,
+              as it doesn't differentiate muscle from fat.
+            </p>
+          </section>
+          <section aria-labelledby="pregnancy">
+            <h3 id="pregnancy">Pregnancy</h3>
+            <p>
+              Expectant mothers experience weight gain due to their growing
+              baby. Maintaining a healthy pre-pregnancy BMI is advisable to
+              minimise health risks for both mother and child.
+            </p>
+          </section>
 
-  Regular exercise
-  Exercise improves fitness, aids weight control, elevates mood, and reduces disease 
-  risk, fostering wellness and longevity.
-
-  Adequate sleep
-  Sleep enhances mental clarity, emotional stability, and physical wellness, promoting 
-  overall restoration and rejuvenation.
-
-  Limitations of BMI
-
-  Although BMI is often a practical indicator of healthy weight, it is not suited for 
-  every person. Specific groups should carefully consider their BMI outcomes, and in 
-  certain cases, the measurement may not be beneficial to use.
-
-  Gender
-  The development and body fat composition of girls and boys vary with age. Consequently, 
-  a child's age and gender are considered when evaluating their BMI.
-
-  Age
-  In aging individuals, increased body fat and muscle loss may cause BMI to underestimate 
-  body fat content.
-
-  Muscle
-  BMI may misclassify muscular individuals as overweight or obese, as it doesn't 
-  differentiate muscle from fat.
-
-  Pregnancy
-  Expectant mothers experience weight gain due to their growing baby. Maintaining a 
-  healthy pre-pregnancy BMI is advisable to minimise health risks for both mother 
-  and child.
-
-  Race
-  Certain health concerns may affect individuals of some Black and Asian origins at 
-  lower BMIs than others. To learn more, it is advised to discuss this with your 
-  GP or practice nurse.
-
-</body>
+          <section aria-labelledby="race">
+            <h3 id="race">Race</h3>
+            <p>
+              Certain health concerns may affect individuals of some Black and
+              Asian origins at lower BMIs than others. To learn more, it is
+              advised to discuss this with your GP or practice nurse.
+            </p>
+          </section>
+        </section>
+      </article>
+    </main>
+  </body>
 </html>
