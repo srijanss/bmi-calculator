@@ -10,6 +10,10 @@
 :host {
   @mixin visually-hidden;
 
+  & .hidden {
+    display: none !important;
+  }
+
   & h2 {
     font-size: 1.5rem; /* 24px */
     font-variation-settings: "wght" var(--fw-semi-bold);
@@ -19,7 +23,11 @@
 
   & #bmi-calculator-form {
     --radio-size: 31px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     & fieldset#unit-of-measure-group {
+      margin-top: 1.5rem;
       & ul {
         list-style: none;
         display: flex;
@@ -68,6 +76,9 @@
 
     & fieldset#metric-unit,
     & fieldset#imperial-unit {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       & label,
       & legend {
         font-size: 0.875rem; /* 14px */
@@ -97,7 +108,7 @@
         width: 100%;
         border: 1px solid #d8e2e7;
         padding: 1.25rem; /* 20px */
-        padding-right: 5.25rem; /* 84px */
+        padding-right: 3.5rem; /* 84px */
         border-radius: 12px;
         font-family: var(--default-font-family);
         font-size: 1.5rem;

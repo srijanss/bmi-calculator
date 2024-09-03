@@ -1,4 +1,5 @@
 import css from "./FormComponent.css?inline";
+import Store from "../../store";
 
 export default class FormComponent extends HTMLElement {
   constructor() {
@@ -8,6 +9,7 @@ export default class FormComponent extends HTMLElement {
   connectedCallback() {
     this.shadow = this.attachShadow({ mode: "open" });
     this.render();
+    this.handleEvents();
   }
 
   render() {
@@ -59,7 +61,7 @@ export default class FormComponent extends HTMLElement {
             </div>
           </label>
         </fieldset>
-        <fieldset id="imperial-unit">
+        <fieldset id="imperial-unit" class="hidden">
           <legend class="visually-hidden">Imperial measurements</legend>
           <fieldset id="imperial-unit-height">
             <legend>Height</legend>
@@ -86,5 +88,69 @@ export default class FormComponent extends HTMLElement {
         </fieldset>
       </form>
     `;
+  }
+
+  calculateBmi(form) {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    for (const key in data) {
+      if (data[key] === "") {
+        data[key] = 0;
+      }
+    }
+    if (Store.unit === Store.UNIT.METRIC) {
+      if (data.height && data.weight) {
+        const height = parseFloat(data.height) / 100;
+        const weight = parseFloat(data.weight);
+        const bmi = weight / height ** 2;
+        Store.bmi = parseFloat(bmi.toFixed(2));
+      }
+    } else if (Store.unit === Store.UNIT.IMPERIAL) {
+      if (
+        (data.feet && data.stones) ||
+        (data.feet && data.pounds) ||
+        (data.inches && data.stones) ||
+        (data.inches && data.pounds)
+      ) {
+        const height = parseFloat(data.feet) * 12 + parseFloat(data.inches);
+        const weight = parseFloat(data.stones) * 14 + parseFloat(data.pounds);
+        const bmi = (weight / height ** 2) * 703;
+        Store.bmi = parseFloat(bmi.toFixed(2));
+      }
+    }
+  }
+
+  handleEvents() {
+    const form = this.shadow.getElementById("bmi-calculator-form");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+
+    const metricUnitFieldSet = this.shadow.getElementById("metric-unit");
+    const imperialUnitFieldSet = this.shadow.getElementById("imperial-unit");
+
+    const metricRadio = this.shadow.getElementById("metric");
+    metricRadio.addEventListener("change", (e) => {
+      if (e.currentTarget.checked) {
+        Store.unit = Store.UNIT.METRIC;
+        metricUnitFieldSet.classList.remove("hidden");
+        imperialUnitFieldSet.classList.add("hidden");
+      }
+    });
+    const imperialRadio = this.shadow.getElementById("imperial");
+    imperialRadio.addEventListener("change", (e) => {
+      if (e.currentTarget.checked) {
+        Store.unit = Store.UNIT.IMPERIAL;
+        metricUnitFieldSet.classList.add("hidden");
+        imperialUnitFieldSet.classList.remove("hidden");
+      }
+    });
+
+    const numberInputs = this.shadow.querySelectorAll("input[type='number']");
+    Array.from(numberInputs).forEach((input) => {
+      input.addEventListener("input", (e) => {
+        this.calculateBmi(form);
+      });
+    });
   }
 }
