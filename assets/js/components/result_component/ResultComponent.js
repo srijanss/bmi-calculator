@@ -84,13 +84,13 @@ export default class ResultComponent extends HTMLElement {
     const minWeight = Store.getMinIdealWeight();
     const maxWeight = Store.getMaxIdealWeight();
     if (Store.unit === Store.UNIT.METRIC) {
-      return `${minWeight.toFixed(2)}kgs and ${maxWeight.toFixed(2)}kgs.`;
+      return `${minWeight.toFixed(2)}kgs - ${maxWeight.toFixed(2)}kgs.`;
     } else if (Store.unit === Store.UNIT.IMPERIAL) {
       const minWeightInStonesAndPounds =
         this.getWeightInStonesAndPounds(minWeight);
       const maxWeightInStonesAndPounds =
         this.getWeightInStonesAndPounds(maxWeight);
-      return `${minWeightInStonesAndPounds} and ${maxWeightInStonesAndPounds}.`;
+      return `${minWeightInStonesAndPounds} - ${maxWeightInStonesAndPounds}.`;
     }
   }
 }

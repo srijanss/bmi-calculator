@@ -15,6 +15,7 @@
   }
 
   & #bmi-calculator-info {
+    min-height: 135px;
     padding: 2rem;
     background-color: var(--color-blue);
     border-radius: 16px;
@@ -27,7 +28,7 @@
       & h3 {
         font-size: 1.5rem;
         font-variation-settings: "wght" var(--fw-semi-bold);
-        line-height: 1;
+        /* line-height: 1; */
         letter-spacing: -0.7px;
       }
 
@@ -65,6 +66,37 @@
 
         & strong {
           font-variation-settings: "wght" var(--fw-semi-bold);
+        }
+      }
+    }
+  }
+
+  @mixin media-query-tablet {
+    & #bmi-calculator-info {
+      --circle-radius: 150px;
+      border-radius: 16px var(--circle-radius) var(--circle-radius) 16px;
+
+      & #bmi-result {
+        flex-direction: row;
+        align-items: center;
+        & #bmi-display {
+          flex: 1;
+        }
+
+        & #bmi-classification {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  @mixin media-query-desktop {
+    & #bmi-calculator-info {
+      & #bmi-result {
+        & #bmi-display {
+          & #bmi-display-value {
+            font-size: 4rem; /* 64px */
+          }
         }
       }
     }
