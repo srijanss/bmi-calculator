@@ -30,19 +30,29 @@ export default class ResultComponent extends HTMLElement {
 
   renderBMIResult() {
     return `
+      <template id="bmi-display-sr-only-template">
+        <p id="bmi-display-sr-only" class="visually-hidden"></p>
+      </template>
       <section
         id="bmi-result"
         aria-label="BMI Calculator result"
+        class="hidden" 
+        aria-live="polite" role="status" aria-atomic="true"
       >
-        <p id="bmi-display">
-          <span id="bmi-display-label">Your BMI is...</span>
-          <span id="bmi-display-value">${this.bmi.toFixed(2)}</span>
-        </p>
-        <p id="bmi-classification">
-          Your BMI suggests you're a ${Store.getClassification()}. Your ideal weight is between <strong>${this.getIdealWeight()}</strong>
-        </p>
       </section>
     `;
+  }
+
+  renderResultContent() {
+    return `
+      <p id="bmi-display" aria-hidden="true">
+        <span id="bmi-display-label">Your BMI is...</span>
+        <span id="bmi-display-value">${this.bmi.toFixed(2)}</span>
+      </p>
+      <p id="bmi-classification" aria-hidden="true">
+        Your BMI suggests you're a ${Store.getClassification()}. Your ideal weight is between <strong id="ideal-weight">${this.getIdealWeight()}</strong>
+      </p>
+      `;
   }
 
   render() {
@@ -50,10 +60,9 @@ export default class ResultComponent extends HTMLElement {
       <style>
         ${css}
       </style>
-      <section id="bmi-calculator-info" aria-label="BMI Calculator Info" aria-live="assertive" role="status" aria-atomic="true">
-        ${
-          this.bmi === 0 ? this.renderWelcomeMessage() : this.renderBMIResult()
-        } 
+      <section id="bmi-calculator-info" aria-label="BMI Calculator Info" >
+        ${this.renderWelcomeMessage()}
+        ${this.renderBMIResult()} 
       </section> 
     `;
   }
@@ -61,11 +70,35 @@ export default class ResultComponent extends HTMLElement {
   update(bmi) {
     this.bmi = bmi;
     if (this.shadow) {
-      const bmiInfoRegion = this.shadow.querySelector("#bmi-calculator-info");
+      const welcomeMessage = this.shadow.querySelector("#welcome-message");
+      const bmiResult = this.shadow.querySelector("#bmi-result");
       if (this.bmi === 0) {
-        bmiInfoRegion.innerHTML = this.renderWelcomeMessage();
+        welcomeMessage.classList.remove("hidden");
+        bmiResult.classList.add("hidden");
       } else {
-        bmiInfoRegion.innerHTML = this.renderBMIResult();
+        const idealWeightRange = this.getIdealWeight();
+        welcomeMessage.classList.add("hidden");
+        bmiResult.classList.remove("hidden");
+        bmiResult.innerHTML = this.renderResultContent();
+        const bmiDisplayTemplate = this.shadow.querySelector(
+          "#bmi-display-sr-only-template"
+        );
+        const clonedNode = bmiResult.querySelector("#bmi-display-sr-only");
+        if (!clonedNode) {
+          const clone = bmiDisplayTemplate.content.cloneNode(true);
+          bmiResult.appendChild(clone);
+        }
+
+        setTimeout(() => {
+          const cloneTextNode = this.shadow.querySelector(
+            "#bmi-display-sr-only"
+          );
+          if (cloneTextNode) {
+            cloneTextNode.textContent = `Your BMI is ${this.bmi.toFixed(
+              2
+            )}. Your BMI suggests you're a ${Store.getClassification()}. Your ideal weight is between ${idealWeightRange}`;
+          }
+        }, 1500);
       }
     }
   }
