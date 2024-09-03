@@ -15,7 +15,16 @@ class Store {
     this.MIN_OVER_WEIGHT = 25;
     this.MAX_OVER_WEIGHT = 29.9;
     this._unit = this.UNIT.METRIC;
-    this._height = 0;
+    this._height = {
+      meters: 0,
+      feet: 0,
+      inches: 0,
+    };
+    this._weight = {
+      kgs: 0,
+      stones: 0,
+      pounds: 0,
+    };
     this._minIdealWeight = 0;
     this._maxIdealWeight = 0;
     this._bmi = 0;
@@ -45,18 +54,45 @@ class Store {
 
   set height(value) {
     if (this.unit === this.UNIT.IMPERIAL) {
-      this._height = value.feet * 0.3048 + value.inches * 0.127;
+      this._height.feet = parseFloat(value.feet);
+      this._height.inches = parseFloat(value.inches);
+      this._height.meters =
+        value.feet * this.CONVERSIONS.FOOT_TO_METER +
+        value.inches * this.CONVERSIONS.INCH_TO_METER;
     } else {
-      this._height = value;
+      this._height.meters = value / 100;
+      const heightInFeet = this._height.meters / this.CONVERSIONS.FOOT_TO_METER;
+      this._height.feet = Math.floor(heightInFeet);
+      this._height.inches = (heightInFeet - this._height.feet) * 12;
+    }
+  }
+
+  get weight() {
+    return this._weight;
+  }
+
+  set weight(value) {
+    if (this.unit === this.UNIT.IMPERIAL) {
+      this._weight.stones = parseFloat(value.stones);
+      this._weight.pounds = parseFloat(value.pounds);
+      this._weight.kgs =
+        (parseFloat(value.stones) +
+          parseFloat(value.pounds) / this.CONVERSIONS.STONE_TO_POUNDS) *
+        this.CONVERSIONS.STONE_TO_KG;
+    } else {
+      this._weight.kgs = value;
+      const weightInStones = this._weight.kgs / this.CONVERSIONS.STONE_TO_KG;
+      this._weight.stones = Math.floor(weightInStones);
+      this._weight.pounds = (weightInStones - this._weight.stones) * 14;
     }
   }
 
   getMinIdealWeight() {
-    return this.MIN_IDEAL_WEIGHT * Math.pow(this._height, 2);
+    return this.MIN_IDEAL_WEIGHT * Math.pow(this._height.meters, 2);
   }
 
   getMaxIdealWeight() {
-    return this.MAX_IDEAL_WEIGHT * Math.pow(this._height, 2);
+    return this.MAX_IDEAL_WEIGHT * Math.pow(this._height.meters, 2);
   }
 
   getClassification() {

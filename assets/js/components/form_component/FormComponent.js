@@ -99,32 +99,20 @@ export default class FormComponent extends HTMLElement {
       }
     }
     if (Store.unit === Store.UNIT.METRIC) {
-      if (data.height && data.weight) {
-        const height = parseFloat(data.height) / 100;
-        const weight = parseFloat(data.weight);
-        Store.bmi = { weight, height };
-        Store.height = parseFloat(height.toFixed(2));
-      }
+      Store.height = parseFloat(data.height);
+      Store.weight = parseFloat(data.weight);
     } else if (Store.unit === Store.UNIT.IMPERIAL) {
-      if (
-        (data.feet && data.stones) ||
-        (data.feet && data.pounds) ||
-        (data.inches && data.stones) ||
-        (data.inches && data.pounds)
-      ) {
-        const height =
-          parseFloat(data.feet) * Store.CONVERSIONS.FOOT_TO_METER +
-          parseFloat(data.inches) * Store.CONVERSIONS.INCH_TO_METER;
-        const weight =
-          (parseFloat(data.stones) +
-            parseFloat(data.pounds) / Store.CONVERSIONS.STONE_TO_POUNDS) *
-          Store.CONVERSIONS.STONE_TO_KG;
-        Store.bmi = { weight, height };
-        Store.height = {
-          feet: parseFloat(data.feet),
-          inches: parseFloat(data.inches),
-        };
-      }
+      Store.height = {
+        feet: parseFloat(data.feet),
+        inches: parseFloat(data.inches),
+      };
+      Store.weight = {
+        stones: parseFloat(data.stones),
+        pounds: parseFloat(data.pounds),
+      };
+    }
+    if (Store.weight.kgs > 0 && Store.height.meters > 0) {
+      Store.bmi = { weight: Store.weight.kgs, height: Store.height.meters };
     }
   }
 
@@ -154,11 +142,39 @@ export default class FormComponent extends HTMLElement {
       }
     });
 
-    const numberInputs = this.shadow.querySelectorAll("input[type='number']");
-    Array.from(numberInputs).forEach((input) => {
-      input.addEventListener("input", (e) => {
-        this.calculateBmi(form);
-      });
+    const metricHeightInput = this.shadow.getElementById("height");
+    const metricWeightInput = this.shadow.getElementById("weight");
+    const imperialFeetInput = this.shadow.getElementById("feet");
+    const imperialInchesInput = this.shadow.getElementById("inches");
+    const imperialStonesInput = this.shadow.getElementById("stones");
+    const imperialPoundsInput = this.shadow.getElementById("pounds");
+
+    metricHeightInput.addEventListener("input", (e) => {
+      this.calculateBmi(form);
+      imperialFeetInput.value = Store.height.feet;
+      imperialInchesInput.value = Store.height.inches;
+    });
+    metricWeightInput.addEventListener("input", (e) => {
+      this.calculateBmi(form);
+      imperialStonesInput.value = Store.weight.stones;
+      imperialPoundsInput.value = Store.weight.pounds;
+    });
+
+    imperialFeetInput.addEventListener("input", (e) => {
+      this.calculateBmi(form);
+      metricHeightInput.value = Store.height.meters * 100;
+    });
+    imperialInchesInput.addEventListener("input", (e) => {
+      this.calculateBmi(form);
+      metricHeightInput.value = Store.height.meters * 100;
+    });
+    imperialStonesInput.addEventListener("input", (e) => {
+      this.calculateBmi(form);
+      metricWeightInput.value = Store.weight.kgs;
+    });
+    imperialPoundsInput.addEventListener("input", (e) => {
+      this.calculateBmi(form);
+      metricWeightInput.value = Store.weight.kgs;
     });
   }
 }
