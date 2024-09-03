@@ -119,6 +119,9 @@
         &::placeholder {
           opacity: 0.25;
         }
+        &:not(:placeholder-shown) {
+          border-color: var(--color-dark-electric-blue);
+        }
 
         &::-webkit-inner-spin-button,
         &::-webkit-outer-spin-button {

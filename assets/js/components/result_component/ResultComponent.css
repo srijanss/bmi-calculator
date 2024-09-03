@@ -8,4 +8,65 @@
 }
 
 :host {
+  @mixin visually-hidden;
+
+  & .hidden {
+    display: none !important;
+  }
+
+  & #bmi-calculator-info {
+    padding: 2rem;
+    background-color: var(--color-blue);
+    border-radius: 16px;
+    color: var(--color-white);
+
+    & #welcome-message {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      & h3 {
+        font-size: 1.5rem;
+        font-variation-settings: "wght" var(--fw-semi-bold);
+        line-height: 1;
+        letter-spacing: -0.7px;
+      }
+
+      & p {
+        font-size: 0.875rem; /* 14px */
+        font-variation-settings: "wght" var(--fw-regular);
+        line-height: 1.5;
+      }
+    }
+
+    & #bmi-result {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      & #bmi-display {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        & #bmi-display-label {
+          font-size: 1rem;
+          font-variation-settings: "wght" var(--fw-semi-bold);
+          line-height: 1.5;
+        }
+        & #bmi-display-value {
+          font-size: 3rem; /* 48px */
+          font-variation-settings: "wght" var(--fw-semi-bold);
+          line-height: 1.1;
+          letter-spacing: -0.7px;
+        }
+      }
+
+      & #bmi-classification {
+        font-size: 0.875rem; /* 14px */
+        line-height: 1.5;
+
+        & strong {
+          font-variation-settings: "wght" var(--fw-semi-bold);
+        }
+      }
+    }
+  }
 }

@@ -102,8 +102,8 @@ export default class FormComponent extends HTMLElement {
       if (data.height && data.weight) {
         const height = parseFloat(data.height) / 100;
         const weight = parseFloat(data.weight);
-        const bmi = weight / height ** 2;
-        Store.bmi = parseFloat(bmi.toFixed(2));
+        Store.bmi = { weight, height };
+        Store.height = parseFloat(height.toFixed(2));
       }
     } else if (Store.unit === Store.UNIT.IMPERIAL) {
       if (
@@ -112,10 +112,18 @@ export default class FormComponent extends HTMLElement {
         (data.inches && data.stones) ||
         (data.inches && data.pounds)
       ) {
-        const height = parseFloat(data.feet) * 12 + parseFloat(data.inches);
-        const weight = parseFloat(data.stones) * 14 + parseFloat(data.pounds);
-        const bmi = (weight / height ** 2) * 703;
-        Store.bmi = parseFloat(bmi.toFixed(2));
+        const height =
+          parseFloat(data.feet) * Store.CONVERSIONS.FOOT_TO_METER +
+          parseFloat(data.inches) * Store.CONVERSIONS.INCH_TO_METER;
+        const weight =
+          (parseFloat(data.stones) +
+            parseFloat(data.pounds) / Store.CONVERSIONS.STONE_TO_POUNDS) *
+          Store.CONVERSIONS.STONE_TO_KG;
+        Store.bmi = { weight, height };
+        Store.height = {
+          feet: parseFloat(data.feet),
+          inches: parseFloat(data.inches),
+        };
       }
     }
   }
