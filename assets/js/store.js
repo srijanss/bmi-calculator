@@ -104,7 +104,7 @@ class Store {
     ) {
       return "healthy weight";
     } else if (
-      this.bmi >= this.MIN_OVER_WEIGHT &&
+      this.bmi > this.MAX_IDEAL_WEIGHT &&
       this.bmi <= this.MAX_OVER_WEIGHT
     ) {
       return "overweight";
