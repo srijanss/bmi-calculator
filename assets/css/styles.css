@@ -59,6 +59,9 @@ img {
     height: 737px;
     left: 1.5rem;
   }
+  @mixin media-query-large-desktop {
+    width: 60%;
+  }
 }
 
 header {
