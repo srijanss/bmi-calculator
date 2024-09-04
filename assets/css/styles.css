@@ -193,11 +193,9 @@ main {
       padding-right: 42px;
 
       & #img--wrapper {
-        width: 319px;
-
         & img {
           height: 100%;
-          object-position: -80px 50%;
+          object-position: center right;
         }
       }
 
