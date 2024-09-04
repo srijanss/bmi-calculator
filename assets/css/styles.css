@@ -137,6 +137,10 @@ main {
         margin-top: 2rem;
       }
     }
+
+    & #curved-line-left {
+      display: none;
+    }
   }
 
   & #healthy-lifestyle-block {
@@ -197,6 +201,9 @@ main {
         line-height: 1.5;
         color: var(--color-dark-electric-blue);
       }
+    }
+    & #curved-line-right {
+      display: none;
     }
 
     & section {
@@ -321,7 +328,8 @@ main {
       width: var(--content-width-desktop);
       margin: 0 auto;
       padding: 0;
-      min-height: 667px;
+      /* min-height: 667px; */
+      min-height: 598px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
@@ -350,12 +358,14 @@ main {
     & #bmi-result-meaning--wrapper {
       width: var(--content-width-desktop);
       margin: 0 auto;
+      margin-top: 65px;
       padding-top: 0;
       gap: 131px;
+      position: relative;
 
       & .img--wrapper {
-        width: 100%;
-
+        width: 564px;
+        height: 533px;
         & img {
           object-position: center;
         }
@@ -377,6 +387,15 @@ main {
         & p {
           margin-top: 2.1875rem;
         }
+      }
+
+      & #curved-line-left {
+        width: 85px;
+        height: 200px;
+        display: block;
+        position: absolute;
+        top: -52px;
+        right: 27px;
       }
     }
 
@@ -408,6 +427,7 @@ main {
         "age age age age muscle muscle"
         "pregnancy pregnancy pregnancy race race race";
       gap: 2rem;
+      position: relative;
       & .title-block {
         width: 564px;
         margin: 0;
@@ -421,6 +441,14 @@ main {
           text-align: left;
           padding: 0;
         }
+      }
+      & #curved-line-right {
+        display: block;
+        width: 94px;
+        height: 122px;
+        position: absolute;
+        top: 251px;
+        left: 165px;
       }
 
       & section {
