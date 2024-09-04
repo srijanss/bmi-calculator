@@ -79,11 +79,11 @@ Users should be able to:
 ```css
 @define-mixin bmi-app-gradient {
   background-image: linear-gradient(
-      to right bottom,
-      transparent 0%,
-      #d6e6fe50 75%,
-      #d6e6fe 100%
-    ), linear-gradient(to right bottom, transparent 0%, #d6fcfe50 100%);
+    to left top,
+    #d6e6fe 0%,
+    #d6fcfe50 50%,
+    #d6fcfe00 100%
+  );
 }
 #curved-background {
   width: 100%;
