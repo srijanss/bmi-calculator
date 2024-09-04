@@ -45,13 +45,13 @@
         id="bmi-result-meaning--wrapper"
         aria-labelledby="bmi-result-meaning"
       >
-        <div id="img--wrapper">
+        <div class="img--wrapper">
           <img
             src="./assets/images/image-man-eating.webp"
             alt="A man eating a healthy meal."
           />
         </div>
-        <div id="title-block">
+        <div class="title-block">
           <h2 id="bmi-result-meaning">What your BMI result means</h2>
           <p>
             A BMI range of 18.5 to 24.9 is considered a 'healthy weight.'
@@ -64,6 +64,7 @@
           </p>
         </div>
       </article>
+
       <article
         id="healthy-lifestyle-block"
         aria-label="Healthy Lifestyle Habits"
@@ -106,8 +107,11 @@
         </div>
       </article>
 
-      <article aria-labelledby="Limitations-of-bmi">
-        <div>
+      <article
+        id="limitations-of-bmi-block"
+        aria-labelledby="Limitations-of-bmi"
+      >
+        <div class="title-block">
           <h2 id="Limitations-of-bmi">Limitations of BMI</h2>
           <p>
             Although BMI is often a practical indicator of healthy weight, it is
@@ -117,57 +121,65 @@
           </p>
         </div>
 
-        <section aria-label="Limitations of BMI">
-          <section aria-labelledby="gender">
+        <section id="section-gender" aria-labelledby="gender">
+          <div class="section-header">
             <img src="./assets/images/icon-gender.svg" alt="Gender icon" />
             <h3 id="gender">Gender</h3>
-            <p>
-              The development and body fat composition of girls and boys vary
-              with age. Consequently, a child's age and gender are considered
-              when evaluating their BMI.
-            </p>
-          </section>
+          </div>
+          <p>
+            The development and body fat composition of girls and boys vary with
+            age. Consequently, a child's age and gender are considered when
+            evaluating their BMI.
+          </p>
+        </section>
 
-          <section aria-labelledby="age">
+        <section id="section-age" aria-labelledby="age">
+          <div class="section-header">
             <img src="./assets/images/icon-age.svg" alt="Age icon" />
             <h3 id="age">Age</h3>
-            <p>
-              In aging individuals, increased body fat and muscle loss may cause
-              BMI to underestimate body fat content.
-            </p>
-          </section>
+          </div>
+          <p>
+            In aging individuals, increased body fat and muscle loss may cause
+            BMI to underestimate body fat content.
+          </p>
+        </section>
 
-          <section aria-labelledby="muscle">
+        <section id="section-muscle" aria-labelledby="muscle">
+          <div class="section-header">
             <img src="./assets/images/icon-muscle.svg" alt="Muscle icon" />
             <h3 id="muscle">Muscle</h3>
-            <p>
-              BMI may misclassify muscular individuals as overweight or obese,
-              as it doesn't differentiate muscle from fat.
-            </p>
-          </section>
+          </div>
+          <p>
+            BMI may misclassify muscular individuals as overweight or obese, as
+            it doesn't differentiate muscle from fat.
+          </p>
+        </section>
 
-          <section aria-labelledby="pregnancy">
+        <section id="section-pregnancy" aria-labelledby="pregnancy">
+          <div class="section-header">
             <img
               src="./assets/images/icon-pregnancy.svg"
               alt="Pregnancy icon"
             />
             <h3 id="pregnancy">Pregnancy</h3>
-            <p>
-              Expectant mothers experience weight gain due to their growing
-              baby. Maintaining a healthy pre-pregnancy BMI is advisable to
-              minimise health risks for both mother and child.
-            </p>
-          </section>
+          </div>
+          <p>
+            Expectant mothers experience weight gain due to their growing baby.
+            Maintaining a healthy pre-pregnancy BMI is advisable to minimise
+            health risks for both mother and child.
+          </p>
+        </section>
 
-          <section aria-labelledby="race">
+        <section id="section-race" aria-labelledby="race">
+          <div class="section-header">
             <img src="./assets/images/icon-race.svg" alt="Race icon" />
             <h3 id="race">Race</h3>
-            <p>
-              Certain health concerns may affect individuals of some Black and
-              Asian origins at lower BMIs than others. To learn more, it is
-              advised to discuss this with your GP or practice nurse.
-            </p>
-          </section>
+          </div>
+          <p>
+            Certain health concerns may affect individuals of some Black and
+            Asian origins at lower BMIs than others. To learn more, it is
+            advised to discuss this with your GP or practice nurse.
+          </p>
         </section>
       </article>
     </main>

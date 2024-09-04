@@ -121,7 +121,7 @@ main {
 
   & #bmi-result-meaning--wrapper {
     padding-top: 4.5rem;
-    & #title-block {
+    & .title-block {
       padding: 3rem 1.5rem 0;
       & h2 {
         font-size: 2rem;
@@ -175,6 +175,64 @@ main {
     }
   }
 
+  & #limitations-of-bmi-block {
+    margin: 72px 0;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    & .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 40px;
+      & h2 {
+        font-size: 2rem;
+        font-variation-settings: "wght" var(--fw-semi-bold);
+        line-height: 1.1;
+        letter-spacing: -0.7px;
+      }
+      & p {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: var(--color-dark-electric-blue);
+      }
+    }
+
+    & section {
+      --icon-size: 32px;
+      border-radius: 16px;
+      padding: 1.5rem;
+      background-color: var(--color-white);
+      box-shadow: 16px 32px 56px 0 #8faecf25;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      & .section-header {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        & img {
+          width: var(--icon-size);
+          height: var(--icon-size);
+        }
+
+        & h3 {
+          font-size: 1.25rem; /* 20px */
+          font-variation-settings: "wght" var(--fw-semi-bold);
+          letter-spacing: -0.7px;
+        }
+      }
+
+      & p {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: var(--color-dark-electric-blue);
+      }
+    }
+  }
+
   @mixin media-query-tablet {
     & #page-heading-content {
       padding: 2.5rem 2.5rem 0;
@@ -192,14 +250,14 @@ main {
       gap: 75px;
       padding-right: 42px;
 
-      & #img--wrapper {
+      & .img--wrapper {
         & img {
           height: 100%;
           object-position: center right;
         }
       }
 
-      & #title-block {
+      & .title-block {
         padding: 0;
         margin-top: 35px;
         width: 331px;
@@ -228,6 +286,30 @@ main {
             margin-top: 1.5rem;
           }
         }
+      }
+    }
+
+    & #limitations-of-bmi-block {
+      margin: 96px 0;
+      padding: 0 2.265rem;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      column-gap: 1rem;
+      row-gap: 1.5rem;
+      & .title-block {
+        & h2 {
+          text-align: center;
+        }
+        & p {
+          text-align: center;
+          padding: 0 1rem;
+        }
+      }
+
+      & section {
+        width: 335.5px;
+        padding: 2rem;
       }
     }
   }
@@ -271,7 +353,7 @@ main {
       padding-top: 0;
       gap: 131px;
 
-      & #img--wrapper {
+      & .img--wrapper {
         width: 100%;
 
         & img {
@@ -279,7 +361,7 @@ main {
         }
       }
 
-      & #title-block {
+      & .title-block {
         padding: 0;
         margin: 0;
         width: 465px;
@@ -311,6 +393,56 @@ main {
           display: grid;
           grid-template-columns: 1fr;
           gap: 45px;
+        }
+      }
+    }
+
+    & #limitations-of-bmi-block {
+      width: var(--content-width-desktop);
+      margin: 120px auto;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-areas:
+        "title title title gender gender gender"
+        "age age age age muscle muscle"
+        "pregnancy pregnancy pregnancy race race race";
+      gap: 2rem;
+      & .title-block {
+        width: 564px;
+        margin: 0;
+        grid-area: title;
+        gap: 35px;
+        & h2 {
+          font-size: 3rem;
+          text-align: left;
+        }
+        & p {
+          text-align: left;
+          padding: 0;
+        }
+      }
+
+      & section {
+        width: 365px;
+        &#section-gender {
+          grid-area: gender;
+          justify-self: center;
+        }
+        &#section-age {
+          grid-area: age;
+          justify-self: end;
+        }
+        &#section-muscle {
+          grid-area: muscle;
+          justify-self: end;
+        }
+        &#section-pregnancy {
+          grid-area: pregnancy;
+          justify-self: end;
+        }
+        &#section-race {
+          grid-area: race;
         }
       }
     }
