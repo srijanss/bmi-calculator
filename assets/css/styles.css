@@ -84,23 +84,27 @@ header {
 
 main {
   width: 100%;
-  padding: 1.5rem 1.5rem 0;
 
-  & h1 {
-    font-size: 3rem; /* 48px */
-    font-variation-settings: "wght" var(--fw-semi-bold);
-    line-height: 1.1;
-    text-align: center;
-  }
+  & #page-heading-content {
+    padding: 1.5rem 1.5rem 0;
+    & h1 {
+      font-size: 3rem; /* 48px */
+      font-variation-settings: "wght" var(--fw-semi-bold);
+      line-height: 1.1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
 
-  & p {
-    font-size: 1rem;
-    font-variation-settings: "wght" var(--fw-regular);
-    line-height: 1.5;
-    color: var(--color-dark-electric-blue);
-    letter-spacing: -0.5px;
-    text-align: center;
-    margin-top: 1.5rem;
+    & p {
+      font-size: 1rem;
+      font-variation-settings: "wght" var(--fw-regular);
+      line-height: 1.5;
+      color: var(--color-dark-electric-blue);
+      letter-spacing: -0.5px;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
   }
 
   & #bmi-form--wrapper {
@@ -115,26 +119,132 @@ main {
     gap: 1.5rem;
   }
 
+  & #bmi-result-meaning--wrapper {
+    padding-top: 4.5rem;
+    & #title-block {
+      padding: 3rem 1.5rem 0;
+      & h2 {
+        font-size: 2rem;
+        font-variation-settings: "wght" var(--fw-semi-bold);
+        line-height: 1.1;
+        letter-spacing: -0.7px;
+      }
+
+      & p {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: var(--color-dark-electric-blue);
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  & #healthy-lifestyle-block {
+    margin-top: 4.5rem;
+    background-image: linear-gradient(
+        to right bottom,
+        transparent 0%,
+        #d6e6fe 100%
+      ),
+      linear-gradient(to left top, #d6fcfe 0%, transparent 100%);
+    & .section-wrapper {
+      padding: 3.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+
+      & section {
+        --icon-size: 64px;
+        & img {
+          width: var(--icon-size);
+          height: var(--icon-size);
+        }
+        & h3 {
+          font-size: 1.5rem;
+          font-variation-settings: "wght" var(--fw-semi-bold);
+          letter-spacing: -0.7px;
+          margin: 2rem 0 1.5rem;
+        }
+
+        & p {
+          font-size: 1rem;
+          line-height: 1.5;
+          color: var(--color-dark-electric-blue);
+        }
+      }
+    }
+  }
+
   @mixin media-query-tablet {
-    padding: 2.5rem 2.5rem 0;
+    & #page-heading-content {
+      padding: 2.5rem 2.5rem 0;
+    }
 
     & #bmi-form--wrapper {
       margin-top: 2.5rem;
       padding: 2rem;
       gap: 2rem;
     }
+
+    & #bmi-result-meaning--wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 75px;
+      padding-right: 42px;
+
+      & #img--wrapper {
+        width: 319px;
+
+        & img {
+          height: 100%;
+          object-position: -80px 50%;
+        }
+      }
+
+      & #title-block {
+        padding: 0;
+        margin-top: 35px;
+        width: 331px;
+        height: 342px;
+      }
+    }
+
+    & #healthy-lifestyle-block {
+      margin-top: 96px;
+
+      & .section-wrapper {
+        padding: 3.75rem 2.5625rem;
+
+        & section {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          align-items: center;
+          column-gap: 2.5rem;
+          row-gap: 1.5rem;
+
+          & h3 {
+            margin: 0;
+          }
+
+          & p {
+            margin-top: 1.5rem;
+          }
+        }
+      }
+    }
   }
 
   @mixin media-query-desktop {
     padding: 0;
-    width: var(--content-width-desktop);
-    margin: 0 auto;
 
     & #page-heading-content {
+      width: var(--content-width-desktop);
+      margin: 0 auto;
+      padding: 0;
+      min-height: 667px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
-      min-height: 667px;
 
       & #page-heading-wrapper {
         margin-top: 127px;
@@ -142,7 +252,6 @@ main {
         & h1 {
           font-size: 4rem; /* 64px */
           text-align: left;
-          padding-right: 3rem;
         }
 
         & p {
@@ -155,6 +264,56 @@ main {
       & #bmi-form--wrapper {
         margin: 0;
         margin-top: 2.6875rem;
+      }
+    }
+
+    & #bmi-result-meaning--wrapper {
+      width: var(--content-width-desktop);
+      margin: 0 auto;
+      padding-top: 0;
+      gap: 131px;
+
+      & #img--wrapper {
+        width: 100%;
+
+        & img {
+          object-position: center;
+        }
+      }
+
+      & #title-block {
+        padding: 0;
+        margin: 0;
+        width: 465px;
+        height: 309px;
+        align-self: end;
+        margin-bottom: 2.5rem;
+
+        & h2 {
+          font-size: 3rem;
+          letter-spacing: -1px;
+        }
+
+        & p {
+          margin-top: 2.1875rem;
+        }
+      }
+    }
+
+    & #healthy-lifestyle-block {
+      margin: 96px 1.5rem 0;
+      border-radius: 35px;
+      & .section-wrapper {
+        width: var(--content-width-desktop);
+        margin: 0 auto;
+        padding: 72px 0 96px;
+        flex-direction: row;
+
+        & section {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 45px;
+        }
       }
     }
   }
