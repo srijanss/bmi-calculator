@@ -7,6 +7,7 @@ class Store {
     this.CONVERSIONS = {
       FOOT_TO_METER: 0.3048,
       INCH_TO_METER: 0.0254,
+      FOOT_TO_INCH: 12,
       STONE_TO_KG: 6.35029318,
       STONE_TO_POUNDS: 14,
     };
@@ -65,7 +66,7 @@ class Store {
       const heightInFeet = this._height.meters / this.CONVERSIONS.FOOT_TO_METER;
       this._height.feet = Math.floor(heightInFeet);
       this._height.inches = this.getFixedValue(
-        (heightInFeet - this._height.feet) * 12
+        (heightInFeet - this._height.feet) * this.CONVERSIONS.FOOT_TO_INCH
       );
     }
   }
@@ -88,7 +89,8 @@ class Store {
       const weightInStones = this._weight.kgs / this.CONVERSIONS.STONE_TO_KG;
       this._weight.stones = Math.floor(weightInStones);
       this._weight.pounds = this.getFixedValue(
-        (weightInStones - this._weight.stones) * 14
+        (weightInStones - this._weight.stones) *
+          this.CONVERSIONS.STONE_TO_POUNDS
       );
     }
   }
@@ -120,6 +122,17 @@ class Store {
       return "overweight";
     }
     return "obese";
+  }
+
+  getWeightInStonesAndPounds(weight) {
+    const convertedWeight = weight / this.CONVERSIONS.STONE_TO_KG;
+    const weightInStones = Math.floor(convertedWeight);
+    const remainingWeightInPounds =
+      (convertedWeight - weightInStones) * this.CONVERSIONS.STONE_TO_POUNDS;
+    return {
+      stones: weightInStones,
+      pounds: remainingWeightInPounds,
+    };
   }
 
   subscribe(observer) {

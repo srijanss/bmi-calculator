@@ -76,7 +76,6 @@ export default class ResultComponent extends HTMLElement {
         welcomeMessage.classList.remove("hidden");
         bmiResult.classList.add("hidden");
       } else {
-        const idealWeightRange = this.getIdealWeight();
         welcomeMessage.classList.add("hidden");
         bmiResult.classList.remove("hidden");
         bmiResult.innerHTML = this.renderResultContent();
@@ -90,6 +89,7 @@ export default class ResultComponent extends HTMLElement {
         }
 
         setTimeout(() => {
+          const idealWeightRange = this.getIdealWeight();
           const cloneTextNode = this.shadow.querySelector(
             "#bmi-display-sr-only"
           );
@@ -103,27 +103,19 @@ export default class ResultComponent extends HTMLElement {
     }
   }
 
-  getWeightInStonesAndPounds(weight) {
-    const convertedWeight = weight / Store.CONVERSIONS.STONE_TO_KG;
-    const weightInStones = Math.floor(convertedWeight);
-    const remainingWeightInPounds =
-      (convertedWeight - weightInStones) * Store.CONVERSIONS.STONE_TO_POUNDS;
-    return `${weightInStones.toFixed(0)}st ${remainingWeightInPounds.toFixed(
-      2
-    )}lbs`;
-  }
-
   getIdealWeight() {
     const minWeight = Store.getMinIdealWeight();
     const maxWeight = Store.getMaxIdealWeight();
     if (Store.unit === Store.UNIT.METRIC) {
       return `${minWeight.toFixed(2)}kgs - ${maxWeight.toFixed(2)}kgs.`;
     } else if (Store.unit === Store.UNIT.IMPERIAL) {
-      const minWeightInStonesAndPounds =
-        this.getWeightInStonesAndPounds(minWeight);
-      const maxWeightInStonesAndPounds =
-        this.getWeightInStonesAndPounds(maxWeight);
-      return `${minWeightInStonesAndPounds} - ${maxWeightInStonesAndPounds}.`;
+      const minCalculatedWeight = Store.getWeightInStonesAndPounds(minWeight);
+      const maxCalculatedWeight = Store.getWeightInStonesAndPounds(maxWeight);
+      return `${
+        minCalculatedWeight.stones
+      }st ${minCalculatedWeight.pounds.toFixed(2)}lbs - ${
+        maxCalculatedWeight.stones
+      }st ${maxCalculatedWeight.pounds.toFixed(2)}lbs`;
     }
   }
 }
