@@ -1,6 +1,5 @@
 module.exports = {
   plugins: [
-    require("postcss-css-reset"),
     require("autoprefixer")({
       overrideBrowserslist: ["last 2 versions", "ie > 8"],
     }),
