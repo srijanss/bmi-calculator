@@ -56,14 +56,17 @@ class Store {
     if (this.unit === this.UNIT.IMPERIAL) {
       this._height.feet = parseFloat(value.feet);
       this._height.inches = parseFloat(value.inches);
-      this._height.meters =
+      this._height.meters = this.getFixedValue(
         value.feet * this.CONVERSIONS.FOOT_TO_METER +
-        value.inches * this.CONVERSIONS.INCH_TO_METER;
+          value.inches * this.CONVERSIONS.INCH_TO_METER
+      );
     } else {
       this._height.meters = value / 100;
       const heightInFeet = this._height.meters / this.CONVERSIONS.FOOT_TO_METER;
       this._height.feet = Math.floor(heightInFeet);
-      this._height.inches = (heightInFeet - this._height.feet) * 12;
+      this._height.inches = this.getFixedValue(
+        (heightInFeet - this._height.feet) * 12
+      );
     }
   }
 
@@ -75,16 +78,23 @@ class Store {
     if (this.unit === this.UNIT.IMPERIAL) {
       this._weight.stones = parseFloat(value.stones);
       this._weight.pounds = parseFloat(value.pounds);
-      this._weight.kgs =
+      this._weight.kgs = this.getFixedValue(
         (parseFloat(value.stones) +
           parseFloat(value.pounds) / this.CONVERSIONS.STONE_TO_POUNDS) *
-        this.CONVERSIONS.STONE_TO_KG;
+          this.CONVERSIONS.STONE_TO_KG
+      );
     } else {
       this._weight.kgs = value;
       const weightInStones = this._weight.kgs / this.CONVERSIONS.STONE_TO_KG;
       this._weight.stones = Math.floor(weightInStones);
-      this._weight.pounds = (weightInStones - this._weight.stones) * 14;
+      this._weight.pounds = this.getFixedValue(
+        (weightInStones - this._weight.stones) * 14
+      );
     }
+  }
+
+  getFixedValue(value) {
+    return parseFloat(value.toFixed(4));
   }
 
   getMinIdealWeight() {
