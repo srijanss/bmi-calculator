@@ -77,17 +77,21 @@ Users should be able to:
 - I also learned about how to apply multiple linear gradients to create the background effect like the design
 
 ```css
+@define-mixin bmi-app-gradient {
+  background-image: linear-gradient(
+      to right bottom,
+      transparent 0%,
+      #d6e6fe50 75%,
+      #d6e6fe 100%
+    ), linear-gradient(to right bottom, transparent 0%, #d6fcfe50 100%);
+}
 #curved-background {
   width: 100%;
   height: 640px;
   position: absolute;
   top: 0;
   left: 0;
-  background-image: linear-gradient(
-      to right bottom,
-      transparent 0%,
-      #d6e6fe 100%
-    ), linear-gradient(to left top, #d6fcfe 0%, transparent 100%);
+  @mixin bmi-app-gradient;
   border-radius: 0 0 35px 35px;
   background-color: var(--color-white);
   z-index: -1;

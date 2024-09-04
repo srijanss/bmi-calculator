@@ -44,12 +44,7 @@ img {
   position: absolute;
   top: 0;
   left: 0;
-  background-image: linear-gradient(
-      to right bottom,
-      transparent 0%,
-      #d6e6fe 100%
-    ),
-    linear-gradient(to left top, #d6fcfe 0%, transparent 100%);
+  @mixin bmi-app-gradient;
   border-radius: 0 0 35px 35px;
   background-color: var(--color-white);
   z-index: -1;
@@ -148,12 +143,7 @@ main {
 
   & #healthy-lifestyle-block {
     margin-top: 4.5rem;
-    background-image: linear-gradient(
-        to right bottom,
-        transparent 0%,
-        #d6e6fe 100%
-      ),
-      linear-gradient(to left top, #d6fcfe 0%, transparent 100%);
+    @mixin bmi-app-gradient;
     & .section-wrapper {
       padding: 3.5rem 1.5rem;
       display: flex;
